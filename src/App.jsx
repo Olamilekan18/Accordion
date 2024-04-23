@@ -4,11 +4,27 @@ import {  useState  } from "react";
 
 function App() {
   const[selected, setSelected] = useState(null)
+  const [enableMultiSelection, setEnableMultiSelection] = useState(false)
+  const [multiple, setMultiple] = useState([])
+
+
   function handleSingleSelection(getCurrentId){
-    console.log(getCurrentId)
-    setSelected(getCurrentId === selected? null :getCurrentId)
-    console.log(selected)
-    
+    setSelected(getCurrentId === selected? null :getCurrentId) 
+    console.log(getCurrentId) 
+  }
+
+  function handleMultiSelection(getCurrentId){
+    let copyMultiple = [...multiple];
+    const findIndexOfCurrentId = copyMultiple.indexOf(getCurrentId)
+
+    console.log(findIndexOfCurrentId)
+    if(findIndexOfCurrentId === -1){
+      copyMultiple.push(getCurrentId)
+    }
+    else{
+      copyMultiple.splice(findIndexOfCurrentId, 1)
+    }
+    setMultiple(copyMultiple)
   }
 
 
@@ -16,11 +32,15 @@ function App() {
   return (
     <>
       <div className='accordion'>
-        <button>Enable Multiple Selection</button>
+        <button onClick={()=>setEnableMultiSelection(!enableMultiSelection)}>Enable Multiple Selection</button>
         {
           data&&data.length >0?
           data.map(dataItem =><div className='item' key={dataItem.id}>
-            <div className='title' onClick={()=>{handleSingleSelection(dataItem.id)}}>
+            <div className='title' 
+            onClick=
+            {enableMultiSelection
+            ?()=>handleMultiSelection(dataItem.id)
+            :()=>{handleSingleSelection(dataItem.id)}}>
             <h3>{dataItem.question}</h3>
             {/* <span>{selected.includes(dataItem.id) ? '-' : '+'}</span> */}
             <span>+</span>
