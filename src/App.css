@@ -44,17 +44,21 @@
 
 
 .title, span{
-  /* margin-top: 20px; */
   cursor:pointer
 }
 .accordion{
-  /* margin-top:20px; */
   margin:  auto;
   width: 20em;
   height:contain;
   background-color:#fff;
-  color:#000;
   border-radius: 10px;
+}
+button{
+  color: #fff;
+  width: inherit;
+  background-color: transparent;
+  border-radius: 2px;
+  font-size: 14px;
 }
 span{
   font: 15px;

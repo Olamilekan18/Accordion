@@ -16,6 +16,7 @@ function App() {
   return (
     <>
       <div className='accordion'>
+        <button>Enable Multiple Selection</button>
         {
           data&&data.length >0?
           data.map(dataItem =><div className='item' key={dataItem.id}>
