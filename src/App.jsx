@@ -27,7 +27,7 @@ function App() {
     setMultiple(copyMultiple)
   }
 
-
+console.log(multiple, selected)
   
   return (
     <>
@@ -46,7 +46,9 @@ function App() {
             <span>+</span>
             </div>
             {
-              selected === dataItem.id? <div className='content'> {dataItem.answer}</div>  :null
+              selected === dataItem.id|| multiple.indexOf(dataItem.id) !== -1?
+               <div className='content'> {dataItem.answer}</div>
+                 :null
             }
           </div>
           )
